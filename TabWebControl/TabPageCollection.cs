@@ -23,11 +23,9 @@
         {
             get
             {
-
                 int ind = IndexOf(index);
                 if (ind < 0)
                     throw new Exception("Out Of Range");
-
                 return (TabPage)this.List[ind];
             }
             set
@@ -59,13 +57,6 @@
             return this.List.Contains(tapPage);
         }
 
-        //Collection IndexOf method 
-
-        /// <summary>
-        /// Find index of tapPage control based on ID
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
         public int IndexOf(object obj)
         {
             if (obj is int)

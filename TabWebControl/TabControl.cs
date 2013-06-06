@@ -81,9 +81,7 @@
                         tabTitleCell.Style["background-color"] = ColorTranslator.ToHtml(Color.DarkGray);
                     }
                 }
-
                 tabTitleCell.Attributes.Add("onclick", "ShowTab(this, " + i.ToString() + ")");
-
                 titlesRow.Cells.Add(tabTitleCell);
                 i++;
             }
@@ -173,14 +171,10 @@
             tabControlTable.BackColor = ColorTranslator.FromHtml("inactiveborder");
 
             tabControlTable.Attributes.Add("ActiveTabIdx", _selectedTab.ToString());
-
             BuildTitles(tabControlTable);
-
             BuildContentRows(tabControlTable);
-
             Controls.Add(tabControlTable);
         }
-
         #endregion implementations
     }
 }
