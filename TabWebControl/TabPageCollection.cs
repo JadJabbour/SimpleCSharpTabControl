@@ -1,4 +1,4 @@
-﻿namespace Mercury.Web.Library
+﻿namespace TabWebControl
 {
     using System;
     using System.Collections;
