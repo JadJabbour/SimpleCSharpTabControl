@@ -117,7 +117,6 @@
                         tabPage.TabBody.InstantiateIn(contentCell);
                     }
 
-                    //only the selected tab body should be visible
                     if (_selectedTab == counter)
                     {
                         contentRow.Style["display"] = "block";

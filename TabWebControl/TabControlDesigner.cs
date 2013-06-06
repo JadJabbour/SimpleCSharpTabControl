@@ -21,9 +21,7 @@
         #region implementations
         public override void Initialize(IComponent component)
         {
-            // Initialize the base
             base.Initialize(component);
-
             tabControl = (TabControl)component;
         }
 
@@ -38,29 +36,20 @@
         public override String GetDesignTimeHtml(DesignerRegionCollection regions)
         {
             int i = 0;
-
-            //add design regions for all header cells, the region name will be prefixd with 
-            // HEADER_PREFIX, and extended with the tab page index. 
-
+            
             foreach (TabPage tabPage in tabControl.TabPages)
             {
                 regions.Add(new DesignerRegion(this, HEADER_PREFIX + i.ToString()));
                 i++;
             }
 
-            // Create an editable region and add it to the regions
-            // the design region name will take CONTENT_PREFIX as prefix and the index
-            // of the current active tab.
-
             EditableDesignerRegion editableRegion =
                 new EditableDesignerRegion(this,
                     CONTENT_PREFIX + tabControl.CurrentDesignTab, false);
             regions.Add(editableRegion);
 
-            // Set the highlight for the selected region
             regions[tabControl.CurrentDesignTab].Highlight = true;
 
-            // Use the base class to render the markup
             return base.GetDesignTimeHtml();
         }
 
@@ -68,10 +57,8 @@
         {
             base.CreateChildControls();
 
-            // Get a reference to the table, which is the first child control
             Table table = (Table)tabControl.Controls[0];
 
-            // Add design time markers for all cells which represents the tab body
             if (table != null)
             {
                 for (int i = 0; i < tabControl.TabPages.Count; i++)
@@ -79,7 +66,6 @@
                     table.Rows[0].Cells[i].Attributes[DesignerRegion.DesignerRegionAttributeName] = i.ToString();
                 }
 
-                //set the editable region
                 table.Rows[1].Cells[0].Attributes[DesignerRegion.DesignerRegionAttributeName] = (tabControl.TabPages.Count).ToString();
             }
         }
@@ -89,18 +75,13 @@
             if (e.Region == null)
                 return;
 
-            // If the clicked region is not a header, return
             if (e.Region.Name.IndexOf(HEADER_PREFIX) != 0)
                 return;
 
-            // Switch the current view if required
-            //only when the clicked region is different than the active region.
             if (e.Region.Name.Substring(HEADER_PREFIX.Length) != tabControl.CurrentDesignTab.ToString())
             {
-                //extract the index of the design region, and set the CurrentDesignTab index
                 tabControl.CurrentDesignTab = int.Parse(e.Region.Name.Substring(HEADER_PREFIX.Length));
 
-                //then after update the design time HTML
                 base.UpdateDesignTimeHtml();
             }
         }
