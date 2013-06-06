@@ -8,7 +8,7 @@
 
     [
         ParseChildren(true, "TabPages"),
-        ToolboxData("<{0}:MyTabControl runat=\"server\" ></{0}:MyTabControl>"),
+        ToolboxData("<{0}:TabControl runat=\"server\" ></{0}:TabControl>"),
         PersistChildren(false),
         Designer(typeof(TabControlDesigner))
     ]
@@ -38,9 +38,6 @@
             }
         }
 
-        /// <summary>
-        /// Get or set the deesign time active tab.
-        /// </summary>
         [
             Browsable(false),
             PersistenceMode(PersistenceMode.InnerProperty),
@@ -52,9 +49,6 @@
             set { _currentDesignTab = value; }
         }
 
-        /// <summary>
-        /// Get or set the runtime active tab.
-        /// </summary>
         public int SelectedTab
         {
             get { return _selectedTab; }
@@ -65,14 +59,12 @@
         #region private methods
         private void BuildTitles(Table tabControlTable)
         {
-            // Create the titles row
             TableRow titlesRow = new TableRow();
             titlesRow.HorizontalAlign = HorizontalAlign.Center;
 
             int i = 0;
             foreach (TabPage tabPage in _tabPages)
             {
-                // Create titles cells
                 TableCell tabTitleCell = new TableCell();
                 tabTitleCell.Text = tabPage.Title;
                 tabTitleCell.Width = new Unit("");
@@ -84,21 +76,18 @@
                 tabTitleCell.Height = new Unit("20");
                 if (!DesignMode)
                 {
-                    //Highlight the selected tab title
                     if (_selectedTab == i)
                     {
                         tabTitleCell.Style["background-color"] = ColorTranslator.ToHtml(Color.DarkGray);
                     }
                 }
 
-                //Add on-click event on the title cell to switch between tabs
                 tabTitleCell.Attributes.Add("onclick", "ShowTab(this, " + i.ToString() + ")");
 
                 titlesRow.Cells.Add(tabTitleCell);
                 i++;
             }
 
-            //Add additional empty cell
             TableCell tc1 = new TableCell();
             tc1.Width = new Unit("100%");
             tc1.Height = new Unit("20");
@@ -109,8 +98,6 @@
 
         private void BuildContentRows(Table tabControlTable)
         {
-            // Create content row(s)
-
             if (DesignMode)
             {
                 TableRow contentRow = new TableRow();
@@ -176,10 +163,8 @@
 
         protected override void CreateChildControls()
         {
-            // Always start with a clean form
             Controls.Clear();
 
-            // Create a table using the control's declarative properties
             Table tabControlTable = new Table();
             tabControlTable.CellSpacing = 1;
             tabControlTable.CellPadding = 0;
@@ -188,14 +173,12 @@
             tabControlTable.Height = this.Height;
             tabControlTable.BackColor = ColorTranslator.FromHtml("inactiveborder");
 
-            //keep a the selected tab index in a an attribute
             tabControlTable.Attributes.Add("ActiveTabIdx", _selectedTab.ToString());
 
             BuildTitles(tabControlTable);
 
             BuildContentRows(tabControlTable);
 
-            // Add the finished tabControlTable to the Controls collection
             Controls.Add(tabControlTable);
         }
 
