@@ -175,8 +175,8 @@
             scriptText = "function _A871F03706FC449A8264C5E76F46A779(tabTitleCell, idp, activeStyle, tabStyle){";
             scriptText += "var tabsTable = tabTitleCell.parentElement.parentElement.parentElement;";
             scriptText += "var activeTabId = Number(tabsTable.getAttribute('ActiveTabID'));";
-            scriptText += "tabsTable.rows[0].cells[activeTabId].className = activeStyle;";
-            scriptText += "tabsTable.rows[0].cells[idp].className = tabStyle;";
+            scriptText += "tabsTable.rows[0].cells[activeTabId].className = tabStyle;";
+            scriptText += "tabsTable.rows[0].cells[idp].className = activeStyle;";
             scriptText += "tabsTable.rows[activeTabId + 1].style.display = 'none';";
             scriptText += "tabsTable.rows[idp + 1].style.display = '';";
             scriptText += "tabsTable.setAttribute('ActiveTabID', idp);}";
