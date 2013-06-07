@@ -190,7 +190,7 @@
             BuildTitles(tabControlTable);
             BuildContentRows(tabControlTable);
             Controls.Add(tabControlTable);
-            ClientScriptManager.RegisterStartupScript(this, GetType(), ClientID, scriptText, true);
+            //ClientScriptManager.RegisterStartupScript(this, GetType(), ClientID, scriptText, true);
         }
         #endregion implementations
     }
