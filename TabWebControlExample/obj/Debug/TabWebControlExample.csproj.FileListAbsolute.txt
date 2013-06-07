@@ -1,0 +1,7 @@
+C:\Users\jad.jabbour\Documents\GitHub\SimpleCSharpTabControl\TabWebControlExample\bin\TabWebControlExample.dll
+C:\Users\jad.jabbour\Documents\GitHub\SimpleCSharpTabControl\TabWebControlExample\bin\TabWebControlExample.pdb
+C:\Users\jad.jabbour\Documents\GitHub\SimpleCSharpTabControl\TabWebControlExample\bin\TabWebControl.dll
+C:\Users\jad.jabbour\Documents\GitHub\SimpleCSharpTabControl\TabWebControlExample\bin\TabWebControl.pdb
+C:\Users\jad.jabbour\Documents\GitHub\SimpleCSharpTabControl\TabWebControlExample\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\jad.jabbour\Documents\GitHub\SimpleCSharpTabControl\TabWebControlExample\obj\Debug\TabWebControlExample.dll
+C:\Users\jad.jabbour\Documents\GitHub\SimpleCSharpTabControl\TabWebControlExample\obj\Debug\TabWebControlExample.pdb
