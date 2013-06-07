@@ -5,7 +5,7 @@
     using System.Web.UI.WebControls;
 
     [
-        ToolboxData("<{0}:TabPage runat=server></{0}:TabPage>"),
+        ToolboxData("<{0}:TabPage runat=\"server\"></{0}:TabPage>"),
         ParseChildren(true),
         PersistChildren(false)
     ]

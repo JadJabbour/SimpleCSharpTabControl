@@ -41,7 +41,6 @@
             this.List.Add(tapPage);
         }
 
-
         public void Insert(int index, TabPage tapPage)
         {
             this.List.Insert(index, tapPage);

@@ -18,6 +18,9 @@
         private TabPageCollection _tabPages;
         private int _currentDesignTab;
         private int _selectedTab;
+        private string _tabStyle;
+        private string _tabBodyStyle;
+        private string _tabActiveStyle;
         #endregion private fields
 
         #region public properties
@@ -54,6 +57,24 @@
             get { return _selectedTab; }
             set { _selectedTab = value; }
         }
+
+        public string TabStyle
+        {
+            get { return _tabStyle; }
+            set { _tabStyle = value; }
+        }
+
+        public string TabBodyStyle
+        {
+            get { return _tabBodyStyle; }
+            set { _tabBodyStyle = value; }
+        }
+
+        public string TabActiveStyle
+        {
+            get { return _tabActiveStyle; }
+            set { _tabActiveStyle = value; }
+        }
         #endregion public properties
 
         #region private methods
@@ -61,36 +82,29 @@
         {
             TableRow titlesRow = new TableRow();
             titlesRow.HorizontalAlign = HorizontalAlign.Center;
+            titlesRow.CssClass = this._tabStyle;
 
             int i = 0;
             foreach (TabPage tabPage in _tabPages)
             {
                 TableCell tabTitleCell = new TableCell();
                 tabTitleCell.Text = tabPage.Title;
-                tabTitleCell.Width = new Unit("");
-                tabTitleCell.BorderStyle = BorderStyle.Outset;
-                tabTitleCell.BorderWidth = new Unit("2");
-                tabTitleCell.Style["padding"] = "0px 4px 0px 4px";
-                tabTitleCell.Style["cursor"] = "hand";
-                tabTitleCell.Wrap = false;
-                tabTitleCell.Height = new Unit("20");
                 if (!DesignMode)
                 {
                     if (_selectedTab == i)
                     {
-                        tabTitleCell.Style["background-color"] = ColorTranslator.ToHtml(Color.DarkGray);
+                        tabTitleCell.CssClass = this._tabActiveStyle;
                     }
                 }
-                tabTitleCell.Attributes.Add("onclick", "ShowTab(this, " + i.ToString() + ")");
+                tabTitleCell.Attributes.Add("onclick", "_A871F03706FC449A8264C5E76F46A779(this, " + i.ToString() + ", '" + this._tabActiveStyle + "', '" + this._tabStyle + "')");
                 titlesRow.Cells.Add(tabTitleCell);
                 i++;
             }
 
             TableCell tc1 = new TableCell();
             tc1.Width = new Unit("100%");
-            tc1.Height = new Unit("20");
+
             titlesRow.Cells.Add(tc1);
-            titlesRow.Height = new Unit("20");
             tabControlTable.Rows.Add(titlesRow);
         }
 
@@ -117,7 +131,7 @@
 
                     if (_selectedTab == counter)
                     {
-                        contentRow.Style["display"] = "block";
+                        contentRow.Style["display"] = "";
                     }
                     else
                     {
@@ -134,13 +148,9 @@
         private TableCell BuildContentCell(TableRow tableRow)
         {
             TableCell tc = new TableCell();
-            tc.ColumnSpan = _tabPages.Count + 1;
-            tc.BackColor = Color.White;
-            tc.BorderWidth = new Unit("1");
-            tc.BorderStyle = BorderStyle.Ridge;
-            tc.BorderColor = Color.Silver;
-            tc.Style["padding"] = "5px 5px 5px 5px";
             tc.Height = new Unit("100%");
+            tc.ColumnSpan = _tabPages.Count + 1;
+            tc.CssClass = this._tabBodyStyle;
 
             tableRow.Cells.Add(tc);
 
@@ -161,19 +171,26 @@
         protected override void CreateChildControls()
         {
             Controls.Clear();
+            string
+            scriptText = "function _A871F03706FC449A8264C5E76F46A779(tabTitleCell, idp, activeStyle, tabStyle){";
+            scriptText += "var tabsTable = tabTitleCell.parentElement.parentElement.parentElement;";
+            scriptText += "var activeTabId = Number(tabsTable.getAttribute('ActiveTabID'));";
+            scriptText += "tabsTable.rows[0].cells[activeTabId].className = activeStyle;";
+            scriptText += "tabsTable.rows[0].cells[idp].className = tabStyle;";
+            scriptText += "tabsTable.rows[activeTabId + 1].style.display = 'none';";
+            scriptText += "tabsTable.rows[idp + 1].style.display = '';";
+            scriptText += "tabsTable.setAttribute('ActiveTabID', idp);}";
 
             Table tabControlTable = new Table();
             tabControlTable.CellSpacing = 1;
             tabControlTable.CellPadding = 0;
-            tabControlTable.BorderStyle = BorderStyle;
-            tabControlTable.Width = this.Width;
-            tabControlTable.Height = this.Height;
-            tabControlTable.BackColor = ColorTranslator.FromHtml("inactiveborder");
+            tabControlTable.CssClass = this.CssClass;
 
-            tabControlTable.Attributes.Add("ActiveTabIdx", _selectedTab.ToString());
+            tabControlTable.Attributes.Add("ActiveTabID", _selectedTab.ToString());
             BuildTitles(tabControlTable);
             BuildContentRows(tabControlTable);
             Controls.Add(tabControlTable);
+            ClientScriptManager.RegisterStartupScript(this, GetType(), ClientID, scriptText, true);
         }
         #endregion implementations
     }
