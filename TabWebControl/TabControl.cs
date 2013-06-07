@@ -95,6 +95,10 @@
                     {
                         tabTitleCell.CssClass = this._tabActiveStyle;
                     }
+                    else
+                    {
+                        tabTitleCell.CssClass = this._tabStyle;
+                    }
                 }
                 tabTitleCell.Attributes.Add("onclick", "_A871F03706FC449A8264C5E76F46A779(this, " + i.ToString() + ", '" + this._tabActiveStyle + "', '" + this._tabStyle + "')");
                 titlesRow.Cells.Add(tabTitleCell);
