@@ -1,5 +1,0 @@
-C:\Users\jad.jabbour\Documents\GitHub\SimpleCSharpTabControl\TabWebControl\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\jad.jabbour\Documents\GitHub\SimpleCSharpTabControl\TabWebControl\bin\Debug\TabWebControl.dll
-C:\Users\jad.jabbour\Documents\GitHub\SimpleCSharpTabControl\TabWebControl\bin\Debug\TabWebControl.pdb
-C:\Users\jad.jabbour\Documents\GitHub\SimpleCSharpTabControl\TabWebControl\obj\Debug\TabWebControl.dll
-C:\Users\jad.jabbour\Documents\GitHub\SimpleCSharpTabControl\TabWebControl\obj\Debug\TabWebControl.pdb
