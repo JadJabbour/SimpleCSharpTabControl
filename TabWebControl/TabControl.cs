@@ -82,7 +82,6 @@
         {
             TableRow titlesRow = new TableRow();
             titlesRow.HorizontalAlign = HorizontalAlign.Center;
-            titlesRow.CssClass = this._tabStyle;
 
             int i = 0;
             foreach (TabPage tabPage in _tabPages)
