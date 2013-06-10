@@ -23,10 +23,12 @@
             set { _title = value; }
         }
 
+
         [
             PersistenceMode(PersistenceMode.InnerProperty),
             DefaultValue(null),
-            Browsable(false)
+            Browsable(false),
+            TemplateInstance(TemplateInstance.Single)
         ]
         public virtual ITemplate TabBody
         {
@@ -36,6 +38,7 @@
                 _tabBody = value;
             }
         }
+
         #endregion public properties
 
         #region not implemented properties
